@@ -2,5 +2,4 @@ from .dadjokes import DadJokes
 
 
 def setup(bot):
-    cog = DadJokes(bot)
-    bot.add_cog(cog)
+    bot.add_cog(DadJokes(bot))

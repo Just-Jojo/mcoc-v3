@@ -1,6 +1,5 @@
 import random
 
-# from cdtcommon.cdtdiagnostics import DIAGNOSTICS
 from .cdtembed import CDTEmbed
 import json
 import aiohttp
@@ -58,8 +57,3 @@ class DadJokes(commands.Cog):
                     attachments = result["attachments"][0]
                     joke = attachments["text"]
         return joke
-
-
-def setup(bot):
-    n = DadJokes(bot)
-    bot.add_cog(n)
