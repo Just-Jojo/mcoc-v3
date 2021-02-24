@@ -3,6 +3,10 @@ from .grab_prestige import grab_prestige
 import typing
 import discord
 
+import logging
+
+log = logging.getLogger("red.mcoc-v3/jojo.Roster")
+
 
 class Roster(commands.Cog):
     def __init__(self, bot):
@@ -21,8 +25,11 @@ class Roster(commands.Cog):
         async with ctx.typing():
             data, thumbnail = await grab_prestige(champion, sig)
         embed = discord.Embed(
-            title="Champion!", description=data, colour=await ctx.embed_colour()
+            title=f"{champion} prestige!",
+            description=data,
+            colour=await ctx.embed_colour(),
         )
+        log.info(thumbnail)
         if thumbnail:
             embed.set_thumbnail(url=thumbnail)
         await ctx.send(embed=embed)
