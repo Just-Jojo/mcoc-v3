@@ -19,10 +19,11 @@ async def transfer_keys(data: typing.List[dict], look_for: str):
 
 
 async def grab_prestige(
-    champion: str, sig: str
+    champion: str, sig: str, star: str
 ) -> typing.Tuple[str, typing.Union[None, str]]:
     if not sig.startswith("sig"):
         sig = f"sig{sig}"
+    getter = f"{star}-{champion}-{star}"
     async with aiohttp.ClientSession() as session:
         async with session.get(URL) as response:
             data = json.loads(await response.text())
@@ -38,7 +39,7 @@ async def grab_prestige(
         return "ERROR", None
     else:
         grabber = data["rows"]
-        data = await transfer_keys(grabber, look_for=champion)
+        data = await transfer_keys(grabber, look_for=getter)
         if data == "ERROR":
             return data, None
         else:

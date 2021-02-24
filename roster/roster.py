@@ -21,9 +21,8 @@ class Roster(commands.Cog):
         sig: typing.Optional[str] = "0",
     ):
         """Get a champion's prestige!"""
-        champion = f"{star}-{champion}-{star}"
         async with ctx.typing():
-            data, thumbnail = await grab_prestige(champion, sig)
+            data, thumbnail = await grab_prestige(champion, sig, str(star))
         embed = discord.Embed(
             title=f"{champion} prestige!",
             description=data,
