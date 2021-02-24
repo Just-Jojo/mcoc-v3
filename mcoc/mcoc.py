@@ -52,7 +52,7 @@ class MCOC(commands.Cog):
             await ctx.send("Hm, there seems to be an issue with that")
         else:
             (embed := discord.Embed(title=f"Map {quest}")).set_thumbnail(url=thing)
-            await ctx.send(embed)
+            await ctx.send(embed=embed)
 
     async def cog_check(self, ctx: commands.Context):
         return await self.bot.is_owner(ctx.author)
