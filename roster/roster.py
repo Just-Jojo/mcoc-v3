@@ -12,6 +12,10 @@ class Roster(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    def capitalize_all(self, data: str):
+        data = data.split(" ")
+        return " ".join([x.capitalize() for x in data])
+
     @commands.command()
     async def prestige(
         self,
@@ -24,7 +28,7 @@ class Roster(commands.Cog):
         async with ctx.typing():
             data, thumbnail = await grab_prestige(champion, sig, str(star))
         embed = discord.Embed(
-            title=f"{champion} prestige!",
+            title=f"{self.capitalize_all(champion)} prestige!",
             description=data,
             colour=await ctx.embed_colour(),
         )
