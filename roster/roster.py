@@ -13,8 +13,8 @@ class Roster(commands.Cog):
         self,
         ctx,
         champion: str,
+        star: typing.Optional[int] = 5,
         sig: typing.Optional[str] = "0",
-        star: typing.Optional[str] = "5",
     ):
         """Get a champion's prestige!"""
         champion = f"{star}-{champion}-{star}"
