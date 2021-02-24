@@ -13,7 +13,7 @@ def deci(data: str):
     return data.replace(" ", ".")
 
 
-class Mcoc(commands.Cog):
+class MCOC(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

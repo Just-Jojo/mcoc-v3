@@ -1,5 +1,5 @@
-from .mcoc_stuff import Mcoc
+from .mcoc_stuff import MCOC
 
 
 def setup(bot):
-    bot.add_cog(Mcoc(bot))
+    bot.add_cog(MCOC(bot))
