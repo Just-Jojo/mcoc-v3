@@ -32,8 +32,8 @@ class Calculator(commands.Cog):
         )
         try:
             calculate_stuff = eval("".join(math_filter))
-        except:
-            ...
+        except NameError:
+            calculate_stuff = 0
         if len(str(calculate_stuff)) > 0:
             em = await self.Embed.create(
                 ctx,
@@ -45,6 +45,10 @@ class Calculator(commands.Cog):
             )
             em.add_field(name="Type Math", value="Get Fun")
             await ctx.send(embed=em)
+        else:
+            await ctx.send(
+                "Hm, there seemed to be something wrong with that calculation"
+            )
 
     @commands.command(
         aliases=[
