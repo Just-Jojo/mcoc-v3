@@ -9,11 +9,15 @@ class Roster(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def prestige(self, ctx, champion: str, sig: typing.Optional[str] = "0"):
+    async def prestige(
+        self,
+        ctx,
+        champion: str,
+        sig: typing.Optional[str] = "0",
+        star: typing.Optional[str] = "5",
+    ):
         """Get a champion's prestige!"""
-        # Since right now I'm just testing I don't want a star yet
-        # so I'm just gonna use 5* champions
-        champion = f"5-{champion}-5"
+        champion = f"{star}-{champion}-{star}"
         async with ctx.typing():
             data = await grab_prestige(champion, sig)
         embed = discord.Embed(
