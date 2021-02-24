@@ -1,5 +1,5 @@
 import discord
-import requests
+import aiohttp
 from .cdtembed import CDTEmbed
 from redbot.core import commands, checks
 from redbot.core.config import Config
@@ -39,6 +39,7 @@ class FetchCdtData(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.Embed = CDTEmbed(self.bot)
         self.config = Config.get_conf(
             self,
             identifier=7078561234,
@@ -74,7 +75,7 @@ class FetchCdtData(commands.Cog):
 
     async def _fetch_cdt_translation_files(self, ctx, filename=None):
         """Pull translation files from CDT, store in global config"""
-        data = Embed.create(
+        data = self.Embed.create(
             self,
             ctx,
             title="Retrieving [{}] CDT JSON files\n".format(len(files.keys())),
@@ -87,8 +88,10 @@ class FetchCdtData(commands.Cog):
             cdt_data, cdt_versions = {}, {}
             filelist = 0
             for key in files.keys():
-                r = requests.get(files[key])
-                raw_data = r.json()
+                # r = requests.get(files[key])
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(files[key]) as r:
+                        raw_data = await r.json()
                 if raw_data is None:
                     data.add_field(name=key, value="{} has no data".format(key))
                 else:
@@ -120,8 +123,10 @@ class FetchCdtData(commands.Cog):
         elif filename in files.keys():
             async with self.config.cdt_data() as cd:
                 fdata = cd[filename]
-            r = requests.get(files[filename])
-            raw_data = r.json()
+            # r = requests.get(files[filename])
+            async with aiohttp.ClientSession() as session:
+                async with session.get(files[filename]) as r:
+                    raw_data = await r.json()
             if raw_data is None:
                 data.add_field(name=key, value="{} has no data".format(key))
             else:
@@ -152,11 +157,11 @@ class FetchCdtData(commands.Cog):
 
     async def _fetch_cdt_mastery_file(self, ctx, monitor=None):
         """Retrieve CDT Mastery Data"""
-        r = requests.get(remote_data_basepath + "json/masteries.json")
-        if r is not None:
-            raw_data = r.json()
-            async with self.config.masteries() as m:
-                m.update(raw_data)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(remote_data_basepath + "json/masteries.json") as r:
+                raw_data = await r.json()
+        async with self.config.masteries() as m:
+            m.update(raw_data)
 
     @checks.is_owner()
     @commands.command(name="ftest")
