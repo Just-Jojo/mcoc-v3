@@ -14,7 +14,8 @@ class Roster(commands.Cog):
         # Since right now I'm just testing I don't want a star yet
         # so I'm just gonna use 5* champions
         champion = f"5-{champion}-5"
-        data = await grab_prestige(champion, sig)
+        async with ctx.typing():
+            data = await grab_prestige(champion, sig)
         embed = discord.Embed(
             title="Champion!", description=data, colour=await ctx.embed_colour()
         )
