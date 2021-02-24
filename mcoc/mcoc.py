@@ -51,7 +51,7 @@ class MCOC(commands.Cog):
         if thing is None:
             await ctx.send("Hm, there seems to be an issue with that")
         else:
-            (embed := discord.Embed(title=f"Map {quest}")).set_thumbnail(thing)
+            (embed := discord.Embed(title=f"Map {quest}")).set_thumbnail(url=thing)
             await ctx.send(embed)
 
     async def cog_check(self, ctx: commands.Context):
