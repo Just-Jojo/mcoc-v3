@@ -55,7 +55,7 @@ class MCOC(commands.Cog):
             (
                 (
                     embed := discord.Embed(
-                        title=f"Map {quest}", colour=await ctx.embed_colour()
+                        title=f"Map {quest}", colour=await ctx.embed_colour(), url=thing
                     )
                 ).set_image(url=thing)
             ).set_footer(text="Thanks to Cat Murdock for the maps!", icon_url=CAT_PFP)
