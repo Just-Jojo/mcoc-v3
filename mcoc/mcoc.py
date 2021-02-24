@@ -45,7 +45,7 @@ class MCOC(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name="map")
-    async def sq_map(self, ctx, quest: deci):
+    async def sq_map(self, ctx, *, quest: deci):
         if not get_map:
             return await ctx.send("Can't do that")
         thing = await get_map(quest=quest)
