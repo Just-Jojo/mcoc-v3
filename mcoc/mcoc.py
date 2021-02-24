@@ -43,15 +43,16 @@ class MCOC(commands.Cog):
             embed.set_thumbnail(url=thumbnail)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def map(self, ctx, quest: deci):
+    @commands.command(name="map")
+    async def sq_map(self, ctx, quest: deci):
         if not get_map:
             return await ctx.send("Can't do that")
         thing = await get_map(quest=quest)
         if thing is None:
             await ctx.send("Hm, there seems to be an issue with that")
         else:
-            await ctx.send(thing)
+            (embed := discord.Embed(title=f"Map {quest}")).set_thumbnail(thing)
+            await ctx.send(embed)
 
     async def cog_check(self, ctx: commands.Context):
         return await self.bot.is_owner(ctx.author)
