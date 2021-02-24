@@ -19,10 +19,12 @@ class Roster(commands.Cog):
         """Get a champion's prestige!"""
         champion = f"{star}-{champion}-{star}"
         async with ctx.typing():
-            data = await grab_prestige(champion, sig)
+            data, thumbnail = await grab_prestige(champion, sig)
         embed = discord.Embed(
             title="Champion!", description=data, colour=await ctx.embed_colour()
         )
+        if thumbnail:
+            embed.set_thumbnail(url=thumbnail)
         await ctx.send(embed=embed)
 
     async def cog_check(self, ctx: commands.Context):
