@@ -9,7 +9,7 @@ class Roster(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def prestige(self, ctx, champion: str, sig: typing.Optional[str] = None):
+    async def prestige(self, ctx, champion: str, sig: typing.Optional[str] = "0"):
         """Get a champion's prestige!"""
         # Since right now I'm just testing I don't want a star yet
         # so I'm just gonna use 5* champions
