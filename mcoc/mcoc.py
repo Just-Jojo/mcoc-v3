@@ -1,5 +1,6 @@
 from redbot.core import commands, Config
-from . import get_map, grab_prestige
+from .maps import get_map
+from .grab_prestige import grab_prestige
 import typing
 import discord
 
