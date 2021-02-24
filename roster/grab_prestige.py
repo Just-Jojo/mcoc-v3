@@ -29,7 +29,7 @@ async def grab_prestige(
         async with session.get(
             (url := IMAGE_URL.format(champion=champion))
         ) as response:
-            log.info(response.status, url)
+            log.info(f"{response.status}\n{url}")
             if response.status == 200:
                 thumbnail = url
             else:
