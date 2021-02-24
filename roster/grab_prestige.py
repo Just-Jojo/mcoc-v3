@@ -7,7 +7,7 @@ import logging
 log = logging.getLogger("red.mcoc-v3/jojo.prestigegrab")
 
 URL = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/json/backup_prestige.json"
-IMAGE_URL = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/images/{champion}.png"
+IMAGE_URL = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/images/portraits/{champion}.png"
 
 
 async def transfer_keys(data: typing.List[dict], look_for: str):
