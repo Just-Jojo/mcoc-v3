@@ -65,7 +65,7 @@ SQ_URL = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/
 
 
 async def get_map(quest: str) -> typing.Union[str, None]:
-    if tuple(quest.split("."))[1:] > (1, 6) or quest.split(".")[1:] < [1, 1]:
+    if tuple(quest.split("."))[1:] > ("1", "6") or quest.split(".")[1:] < [1, 1]:
         return None
     quest = f"sq_{quest}"
     async with aiohttp.ClientSession() as session:
