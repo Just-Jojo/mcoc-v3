@@ -1,5 +1,4 @@
-from .mcoc import Mcoc
-
+from .mcoc_stuff import Mcoc
 
 
 def setup(bot):
