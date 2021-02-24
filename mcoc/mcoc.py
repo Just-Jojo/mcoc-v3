@@ -8,6 +8,7 @@ from redbot.core import Config, commands
 
 
 log = logging.getLogger("red.mcoc-v3/jojo.Roster")
+CAT_PFP = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/images/maps/catmurdock/cat_corner.png"
 
 
 def deci(data: str):
@@ -52,10 +53,12 @@ class MCOC(commands.Cog):
             await ctx.send("Hm, there seems to be an issue with that")
         else:
             (
-                embed := discord.Embed(
-                    title=f"Map {quest}", colour=await ctx.embed_colour()
-                )
-            ).set_image(url=thing)
+                (
+                    embed := discord.Embed(
+                        title=f"Map {quest}", colour=await ctx.embed_colour()
+                    )
+                ).set_image(url=thing)
+            ).set_footer(text="Thanks to Cat Murdock for the maps!", icon_url=CAT_PFP)
             await ctx.send(embed=embed)
 
     async def cog_check(self, ctx: commands.Context):
