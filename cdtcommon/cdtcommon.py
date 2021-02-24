@@ -152,6 +152,21 @@ class CdtCommon(commands.Cog):
         else:
             return None
 
+    ### Static methods
+
+    @staticmethod
+    def from_flat(flat, ch_rating):
+        """Get a numbe from a flat"""
+        denom = 5 * ch_rating + 1500 + flat
+        return round(100*flat/denom, 2)
+
+    @staticmethod
+    def to_flat(per, ch_rating):
+        """Transform a number to a flat"""
+        num = (5 * ch_rating + 1500) * per
+        return round(num/(100-per), 2)
+
+
     # async def collectordevteam(self, ctx):
     #     """Verifies if calling user has either the trusted CollectorDevTeam role, or CollectorSupportTeam"""
     #     role_ids = (

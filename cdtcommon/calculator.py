@@ -30,7 +30,10 @@ class Calculator(commands.Cog):
             + "|pow|radians|sin|sinh|sqrt|tan|tanh|round",
             m,
         )
-        calculate_stuff = eval("".join(math_filter))
+        try:
+            calculate_stuff = eval("".join(math_filter))
+        except:
+            ...
         if len(str(calculate_stuff)) > 0:
             em = await self.Embed.create(
                 ctx,
@@ -74,6 +77,7 @@ class Calculator(commands.Cog):
             m,
         )
         flat_val = eval("".join(math_filter))
+        # turns out this was important lol
         p = CdtCommon.from_flat(flat_val, challenger_rating)
         em = await self.Embed.create(
             ctx,
