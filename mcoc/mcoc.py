@@ -9,6 +9,7 @@ from redbot.core import Config, commands
 
 log = logging.getLogger("red.mcoc-v3/jojo.Roster")
 CAT_PFP = "https://raw.githubusercontent.com/CollectorDevTeam/assets/master/data/images/maps/catmurdock/cat_corner.png"
+CAT_TWITTER = "https://twitter.com/CatMurdock_Art"
 
 
 def deci(data: str):
@@ -55,7 +56,9 @@ class MCOC(commands.Cog):
             (
                 (
                     embed := discord.Embed(
-                        title=f"Map {quest}", colour=await ctx.embed_colour(), url=thing
+                        title=f"Map {quest}",
+                        colour=await ctx.embed_colour(),
+                        url=CAT_TWITTER,
                     )
                 ).set_image(url=thing)
             ).set_footer(text="Thanks to Cat Murdock for the maps!", icon_url=CAT_PFP)
